@@ -4,6 +4,7 @@ import com.trabalho.topicosjava.dto.AlunoRequestDTO;
 import com.trabalho.topicosjava.model.Aluno;
 import com.trabalho.topicosjava.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public class AlunoController {
     private AlunoRepository repository;
 
     @GetMapping
-    public List<Aluno> findAll() {
-        return this.repository.findAll();
+    public ResponseEntity<List<Aluno>> findAll() {
+        return ResponseEntity.ok(this.repository.findAll());
     }
 
     @GetMapping("/{id}")
