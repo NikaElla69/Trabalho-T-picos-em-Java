@@ -22,9 +22,11 @@ public class AlunoController {
     }
 
     @GetMapping("/{id}")
-    public Aluno findById(@PathVariable Integer id) {
-        return this.repository.findById(id)
+    public ResponseEntity<Aluno> findById(@PathVariable Integer id) {
+        Aluno aluno = this.repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
+
+        return ResponseEntity.ok(aluno);
     }
 
     @PostMapping
@@ -53,10 +55,10 @@ public class AlunoController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public ResponseEntity<void> delete(@PathVariable Integer id) {
         Aluno aluno = this.repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
-
         this.repository.delete(aluno);
+        return ResponseEntity.noContent().build();
     }
 }
