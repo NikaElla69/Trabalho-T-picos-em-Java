@@ -70,5 +70,5 @@ public class TurmaController {
 
         this.repository.delete(turma);
 
-        return ResponseEntity.noContent().build()
+        return ResponseEntity.noContent().build();
 }
